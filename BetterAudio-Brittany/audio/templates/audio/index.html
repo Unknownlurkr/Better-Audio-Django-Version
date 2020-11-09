@@ -1,0 +1,9 @@
+{% if all_audio %}
+    <ul>
+        {% for audio in all_audio %}
+        <li><a href="/audio/{{ audio.id }}/">{{ audio.audioTitle }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>There are no audio files uploaded.</h3>
+{% endif %}

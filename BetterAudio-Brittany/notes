@@ -1,0 +1,112 @@
+1-3:
+dont touch manage.py 
+DO NOT TOUCH manage.py
+
+This django project is a WEBSITE that is
+broken up into individual and different parts called APPS
+(For example: video app that displays videos on the website)
+
+If you can't explain what one APP does in one sentance without confusion
+then the APP needs to be broken up more for a simple & short app description
+
+create a app:python manage.py startapp YourAppName
+for example: python manage.py startapp audio
+for the audio app where users can upload their
+audio files
+
+4:
+migrations-hook up and connect source code with database
+
+
+8:After adding model before running: APPLY MIGRATIONS
+enter the command: python manage.py makemigrations audio 
+*migration is just a change to the database*
+python manage.py sqlmigrate music 0001 <-migration ID
+-> will create a table,table colums and rows(in sqlite)
+database is synced with code: python manage.py migrate
+
+note for later: 
+#takes req and sends back an http response
+from django.http import HttpResponse
+
+#what you name here is the name of ur function
+#always passing in a request
+def index(request):
+    return HttpResponse("""<form method="POST">
+  <input type="file" id="audioFile">
+  <input type="submit">
+</form>""") -> use for audio index 
+(maybe change response to just a h2 heading)
+or 
+def audio(request):
+    return HttpResponse("""<form method="POST">
+  <input type="file" id="audioFile">
+  <input type="submit">
+</form>""") -> use for audio index 
+
+database api in the python django shell
+up = Upload(audioPath=r'C:\Users\bsamu\Documents\metaphoric\yalldontvote-VIRRRAAAUS.wav',creatorName="unknown rapper",userName="rapper123",userPassword="123",userEmail="email@email.com",audioTitle="VIRUUSS",audioDescription="2020 sucks")
+for windows path need raw string for \ which is r'C:\path'
+-> moren info https://stackoverflow.com/questions/18084554/why-do-i-get-a-syntaxerror-for-a-unicode-escape-in-my-file-path
+createdObj.save() saves that to the database with save()
+
+how to get into shell in current terminal with django:
+python manage.py shell
+to exit the shell: exit() and clear/clear() old shit with clear or exit
+
+__ is known as a dund which is a double underscore
+__str__ is called dunder string which is a method that builds a string representation of the object
+
+C:\Users\bsamu\Documents\semester-5\webapi\BetterAudio-Brittany>python manage.py shell
+Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit 
+(AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.       
+(InteractiveConsole)
+>>> from audio.models import Upload,AudioFile
+>>> Upload.objects.all()
+<QuerySet [<Upload: C:\Users\bsamu\Documents\metaphoric\yalldontvote-VIRRRAAAUS.wav - unknown rapper>, <Upload: C:\Users\bsamu\Documents\metaphoric\50spin.wav - VINESAUCE VINNY>]>
+>>>
+
+>>> Upload.objects.filter(id=1) 
+<QuerySet [<Upload: C:\Users\bsamu\Documents\metaphoric\yalldontvote-VIRRRAAAUS.wav - unknown rapper>]>
+>>> Upload.objects.filter(id=2) 
+<QuerySet [<Upload: C:\Users\bsamu\Documents\metaphoric\50spin.wav - VINESAUCE VINNY>]>
+>>>
+
+
+create admin:
+python manage.py createsuperuser
+Username(leave blank to use 'bsamu'): admin
+email: email@email.com
+Password:1313Fuck -> can't see password like mainframe password
+
+
+#r stands for regular expression
+# - used for raw string
+#^ is a caret is the beginning
+#$ is used to end A CARET represents the end
+#group items as one thing is grouping
+
+#(?P<audio_id>[0-9]) look for
+    #look for number 0-9
+  #+ will match any other following ints 
+  and will group into one id that will represent one number
+
+
+"""<form method="POST">
+  <input type="file" id="audioFile">
+  <input type="submit">
+  </form>""" for file upload
+
+  html = ''
+  for audio in all_audio:
+    url = '/audio/' + str(audio.id) + '/'
+    html += '<a href="'+ url + '">' + audio.audioTitle + '</a><br>'
+
+
+
+#header for audio page
+    """
+    def header(request):
+        return HttpResponse("<h3>Upload your audio files!<h3>")
+    """
