@@ -1,7 +1,7 @@
 {% if all_audio %}
     <ul>
-        {% for audio in all_audio %}
-        <li><a href="/audio/{{ audio.id }}/">{{ audio.audioTitle }}</a></li>
+        {% for audio_files in all_audio %}
+        <li><a href="{% url 'audio:detail' audio_files.id %}">{{ audio_files.audioTitle }}</a></li>
         {% endfor %}
     </ul>
 {% else %}

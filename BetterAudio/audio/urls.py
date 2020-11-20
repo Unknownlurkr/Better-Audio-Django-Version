@@ -3,9 +3,6 @@ from django.conf.urls import url
 from . import views 
 #. means same dir and look for views to import into urls
 
-#namespacing the urls
-app_name = 'audio'
-
 #creating rules to check what url the 
 #user roles requesting
 urlpatterns = [

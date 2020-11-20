@@ -1,7 +1,7 @@
 #takes req and sends back an http response
-from django.http import Http404
-from django.shortcuts import render
-from .models import Upload
+#from django.http import Http404 dont need anymore with the get obj err
+from django.shortcuts import render,get_object_or_404
+from .models import Upload , AudioFile
 
 
 
@@ -14,11 +14,10 @@ def index(request):
 
 
 def detail(request, audio_id):
-    try:
-        file = Upload.objects.get(pk=audio_id)
-    except Upload.DoesNotExist:
-        raise Http404("This audio upload does not exist. Please upload your file!")
-    return render(request, 'audio/detail.html', {'file': file})
+    #in notes.txt - replacing previous try and catchstatements that is shown lines 118-121 119 
+    #this line below replaces line 119 in nots.txt
+    files = get_object_or_404(Upload, pk=audio_id)
+    return render(request, 'audio/detail.html', {'file': files})
     #return HttpResponse("<h3>Details for Audio id: " + str(audio_id) +"</h3>")
 
 #DISPLAY AUDIO 

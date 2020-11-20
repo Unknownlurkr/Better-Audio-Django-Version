@@ -1,1 +1,16 @@
-{{ file }}
+<h3>Audio Upload Information</h3>
+<h3>Title {{ audio.audioTitle }}</h3>
+<h3>Creator {{ audio.creatorName }}</h3>
+<h3>Audio Description {{ audioDescription }}</h3>
+{% if all_a %}
+<ul>
+  {% for files in audio.audio_files_set.all %}
+    <li>
+        Uploaded audio file
+        <audio controls>
+        <source src="{{ audio.audioPath }}" type="audio/wav" />
+        </audio>
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}

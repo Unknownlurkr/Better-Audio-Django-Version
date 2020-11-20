@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'audiofield',
     'audio.apps.AudioConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +41,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'audiofield.middleware.threadlocals.ThreadLocals',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -118,29 +116,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-#In MIDDLEWARE_CLASSES add 'audiofield.middleware.threadlocals.ThreadLocals'
-
-#In INSTALLED_APPS add 'audiofield'
-
-# Frontend widget values
-# 0-Keep original, 1-Mono, 2-Stereo
-CHANNEL_TYPE_VALUE = 0
-
-# 0-Keep original, 8000-8000Hz, 16000-16000Hz, 22050-22050Hz,
-# 44100-44100Hz, 48000-48000Hz, 96000-96000Hz
-FREQ_TYPE_VALUE = 8000
-
-# 0-Keep original, 1-Convert to MP3, 2-Convert to WAV, 3-Convert to OGG
-CONVERT_TYPE_VALUE = 0
-
-# Set Following variable
-MEDIA_ROOT = ''
-MEDIA_URL = ''
